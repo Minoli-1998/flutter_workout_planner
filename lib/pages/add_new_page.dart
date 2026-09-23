@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_workout_planner/constants/colors.dart';
 import 'package:flutter_workout_planner/constants/responsive.dart';
+import 'package:flutter_workout_planner/data/exercise_data.dart';
 import 'package:flutter_workout_planner/data/user_data.dart';
+import 'package:flutter_workout_planner/models/exercise_model.dart';
+import 'package:flutter_workout_planner/widgets/reusable/exercise_card.dart';
 import 'package:flutter_workout_planner/widgets/reusable/heading_text.dart';
 
 class AddNewPage extends StatefulWidget {
@@ -13,6 +16,7 @@ class AddNewPage extends StatefulWidget {
 
 class _AddNewPageState extends State<AddNewPage> {
   final userData = user;
+  final exersiceList = ExerciseData().exerciseList;
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +43,30 @@ class _AddNewPageState extends State<AddNewPage> {
                 style: TextStyle(
                   fontSize: 16,
                   color: kMainBlueColor,
-                  fontWeight: FontWeight.w500
+                  fontWeight: FontWeight.w500,
                 ),
               ),
 
               SizedBox(height: 5),
 
               HeadingText(title: "All Exercises"),
+
+              SizedBox(height: 10),
+
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.4,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: exersiceList.length,
+                  itemBuilder: (context, index) {
+                    Exercise exercise = exersiceList[index];
+                    return ExerciseCard(
+                      title: exercise.exerciseName,
+                      imagePath: exercise.exersiceImageUrl,
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),
