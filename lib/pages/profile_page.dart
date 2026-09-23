@@ -67,6 +67,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     yourExerciseName: exercise.exerciseName,
                     yourExerciseImageUrl: exercise.exersiceImageUrl,
                     buttonText: 'Mark as Done',
+                    onButtonPressed: () {
+                      setState(() {
+                        user.exerciseList.remove(exercise);
+                      });
+                    },
                   );
                 }).toList(),
               ),
@@ -84,6 +89,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     yourExerciseName: equipment.euipqmentName,
                     yourExerciseImageUrl: equipment.equipmentUrl,
                     buttonText: 'Mark as Handovered',
+                    onButtonPressed: () {
+                      setState(() {
+                        user.equipmentList.remove(equipment);
+                      });
+                    },
                   );
                 }).toList(),
               ),

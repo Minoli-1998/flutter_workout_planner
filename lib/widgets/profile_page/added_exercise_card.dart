@@ -5,10 +5,13 @@ class AddedExerciseCard extends StatefulWidget {
   final String yourExerciseName;
   final String yourExerciseImageUrl;
   final String buttonText;
+  final void Function() onButtonPressed;
   const AddedExerciseCard({
     super.key,
     required this.yourExerciseName,
-    required this.yourExerciseImageUrl, required this.buttonText,
+    required this.yourExerciseImageUrl,
+    required this.buttonText,
+    required this.onButtonPressed,
   });
 
   @override
@@ -55,6 +58,7 @@ class _AddedExerciseCardState extends State<AddedExerciseCard> {
           ElevatedButton(
             onPressed: () {
               // Handle button press
+              widget.onButtonPressed();
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: kMainBlueColor,
