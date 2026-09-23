@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_workout_planner/constants/colors.dart';
 import 'package:flutter_workout_planner/constants/responsive.dart';
+import 'package:flutter_workout_planner/data/equipment_data.dart';
 import 'package:flutter_workout_planner/data/exercise_data.dart';
 import 'package:flutter_workout_planner/data/user_data.dart';
+import 'package:flutter_workout_planner/models/equipment_model.dart';
 import 'package:flutter_workout_planner/models/exercise_model.dart';
+import 'package:flutter_workout_planner/widgets/reusable/add_equipment_card.dart';
 import 'package:flutter_workout_planner/widgets/reusable/exercise_card.dart';
 import 'package:flutter_workout_planner/widgets/reusable/heading_text.dart';
 
@@ -17,6 +20,7 @@ class AddNewPage extends StatefulWidget {
 class _AddNewPageState extends State<AddNewPage> {
   final userData = user;
   final exersiceList = ExerciseData().exerciseList;
+  final equipmentList = EquipmentData().equipmentData;
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +89,50 @@ class _AddNewPageState extends State<AddNewPage> {
                         });
                       },
                       isFav: userData.favExerciseList.contains(exercise),
+                    );
+                  },
+                ),
+              ),
+            
+              SizedBox(height: 5),
+
+              HeadingText(title: "Equipments"),
+
+              SizedBox(height: 10),
+
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.4,
+                child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  itemCount: equipmentList.length,
+                  itemBuilder: (context, index) {
+                    Equipment equipment = equipmentList[index];
+                    return AddEquipmentCard(
+                      equipmentName: equipment.euipqmentName,
+                      equipmentImage: equipment.equipmentUrl,
+                      noOfMins: equipment.noOfMinutes,
+                      caloriesBurnt: equipment.noOfCalories, 
+                      toggleAddEquipment: () {
+                        // Handle add equipment logic here
+                        setState(() {
+                          if (userData.equipmentList.contains(equipment)) {
+                            userData.removeEquipment(equipment);
+                          } else {
+                            userData.addEquipment(equipment);
+                          }
+                        });
+                      }, isAdded: userData.equipmentList.contains(equipment),
+                      toggleAddToFav: () {
+                        // Handle add to favorite logic here
+                        setState(() {
+                          if (userData.favEquipmentList.contains(equipment)) {
+                            userData.removeFavEquipment(equipment);
+                          } else {
+                            userData.addFavEquipment(equipment);
+                          }
+                        });
+                      },
+                      isFav: userData.favEquipmentList.contains(equipment),
                     );
                   },
                 ),
