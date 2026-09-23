@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_workout_planner/constants/colors.dart';
 import 'package:flutter_workout_planner/constants/responsive.dart';
 import 'package:flutter_workout_planner/data/user_data.dart';
+import 'package:flutter_workout_planner/models/equipment_model.dart';
 import 'package:flutter_workout_planner/models/exercise_model.dart';
 import 'package:flutter_workout_planner/models/user_model.dart';
 import 'package:flutter_workout_planner/widgets/reusable/favorite_exercise_card.dart';
@@ -60,6 +61,8 @@ class _FavouritesPageState extends State<FavouritesPage> {
                 ],
               ),
 
+              SizedBox(height: 15),
+
               Text(
                 "Here are all your favorited Workouts",
                 style: TextStyle(
@@ -84,10 +87,46 @@ class _FavouritesPageState extends State<FavouritesPage> {
                   Exercise exercise = userData.favExerciseList[index];
                   return FavoriteExerciseCard(
                     exerciseName: exercise.exerciseName,
-                    exerciseImage: exercise.exersiceImageUrl, 
+                    exerciseImage: exercise.exersiceImageUrl,
                     onRemoveFromFavorites: () {
                       setState(() {
                         userData.removeFavExercise(exercise);
+                      });
+                    },
+                  );
+                },
+              ),
+
+              SizedBox(height: 15),
+
+              Text(
+                "Here are all your favorited equipments",
+                style: TextStyle(
+                  fontSize: 16,
+                  color: kMainBlueColor,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+
+              SizedBox(height: 15),
+
+              GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: userData.favEquipmentList.length,
+                itemBuilder: (context, index) {
+                  Equipment equipment = userData.favEquipmentList[index];
+                  return FavoriteExerciseCard(
+                    exerciseName: equipment.euipqmentName,
+                    exerciseImage: equipment.equipmentUrl,
+                    onRemoveFromFavorites: () {
+                      setState(() {
+                        userData.removeFavEquipment(equipment);
                       });
                     },
                   );
