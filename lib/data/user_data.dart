@@ -48,24 +48,6 @@ User user = User(
       handOvered: false,
     ),
   ],
-  favExerciseList: [
-    Exercise(
-      id: 0,
-      exerciseName: "Push-Ups",
-      exersiceImageUrl: "assets/images/exercises/downward-facing.png",
-      noOfMinutes: 5,
-      completed: false,
-    ),
-  ],
-  favEquipmentList: [
-    Equipment(
-      id: 1,
-      euipqmentName: "Skipping Rope",
-      equipmentDescription: "",
-      equipmentUrl: "assets/images/equipments/skipping-rope.png",
-      noOfMinutes: 10,
-      noOfCalories: 120.5,
-      handOvered: false,
-    ),
-  ],
+  favExerciseList: [],
+  favEquipmentList: [],
 );
