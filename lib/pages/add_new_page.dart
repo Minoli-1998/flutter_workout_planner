@@ -63,6 +63,28 @@ class _AddNewPageState extends State<AddNewPage> {
                     return ExerciseCard(
                       title: exercise.exerciseName,
                       imagePath: exercise.exersiceImageUrl,
+                      toggleAddExercise: () {
+                        // Handle add exercise logic here
+                        setState(() {
+                          if (userData.exerciseList.contains(exercise)) {
+                            userData.removeExercise(exercise);
+                          } else {
+                            userData.addExercise(exercise);
+                          }
+                        });
+                      }, 
+                      isAdded: userData.exerciseList.contains(exercise), 
+                      toggleAddToFav: () {
+                        // Handle add to favorite logic here
+                        setState(() {
+                          if (userData.favExerciseList.contains(exercise)) {
+                            userData.removeFavExercise(exercise);
+                          } else {
+                            userData.addFavExercise(exercise);
+                          }
+                        });
+                      },
+                      isFav: userData.favExerciseList.contains(exercise),
                     );
                   },
                 ),

@@ -29,4 +29,22 @@ class User {
     required this.favExerciseList,
     required this.favEquipmentList,
   });
+
+  // methods
+  // Add exercise to user's exercise list
+  void addExercise(Exercise exercise) {
+    exerciseList.add(exercise);
+  }
+
+  void removeExercise(Exercise exercise) {
+    exerciseList.remove(exercise);
+  }
+
+  void addFavExercise(Exercise exercise) {
+    favExerciseList.add(exercise);
+  }
+
+  void removeFavExercise(Exercise exercise) {
+    favExerciseList.remove(exercise);
+  }
 }

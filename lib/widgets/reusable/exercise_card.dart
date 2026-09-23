@@ -4,7 +4,19 @@ import 'package:flutter_workout_planner/constants/colors.dart';
 class ExerciseCard extends StatefulWidget {
   final String title;
   final String imagePath;
-  const ExerciseCard({super.key, required this.title, required this.imagePath});
+  final bool isAdded;
+  final bool isFav;
+  final void Function() toggleAddExercise;
+  final void Function() toggleAddToFav;
+  const ExerciseCard({
+    super.key,
+    required this.title,
+    required this.imagePath,
+    required this.toggleAddExercise,
+    required this.isAdded,
+    required this.toggleAddToFav, 
+    required this.isFav,
+  });
 
   @override
   State<ExerciseCard> createState() => _ExerciseCardState();
@@ -34,26 +46,31 @@ class _ExerciseCardState extends State<ExerciseCard> {
 
           SizedBox(height: 20),
 
-          Image.asset(
-            widget.imagePath,
-            fit: BoxFit.cover,
-            height: 75,
-          ),
+          Image.asset(widget.imagePath, fit: BoxFit.cover, height: 75),
 
           SizedBox(height: 10),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
+              IconButton(
+                onPressed: () {
+                  widget.toggleAddExercise();
+                },
+                icon: Icon(
+                  widget.isAdded ? Icons.remove : Icons.add,
                   color: kMainBlueColor,
                 ),
-                child: Icon(Icons.add, color: Colors.white, size: 20),
               ),
 
-              Icon(Icons.favorite, color: kMainRedColor, size: 20),
+              IconButton(
+                onPressed: () {
+                  widget.toggleAddToFav();
+                },
+                icon: Icon(
+                  Icons.favorite, 
+                  color: widget.isFav ? kMainRedColor : Colors.grey),
+              ),
             ],
           ),
         ],
