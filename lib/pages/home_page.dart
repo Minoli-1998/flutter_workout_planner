@@ -8,6 +8,7 @@ import 'package:flutter_workout_planner/pages/equipment_details_page.dart';
 import 'package:flutter_workout_planner/pages/exercise_details_page.dart';
 import 'package:flutter_workout_planner/widgets/home_page/progress_card.dart';
 import 'package:flutter_workout_planner/widgets/reusable/activity_card.dart';
+import 'package:flutter_workout_planner/widgets/reusable/heading_text.dart';
 import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
@@ -62,14 +63,7 @@ class _HomePageState extends State<HomePage> {
 
                 SizedBox(height: 20),
 
-                Text(
-                  "Today's Activity",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.black,
-                  ),
-                ),
+                HeadingText(title: "Today's Activity"),
 
                 SizedBox(height: 20),
 
